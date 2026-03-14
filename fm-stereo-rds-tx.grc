@@ -1,0 +1,1557 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: RDS
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: rds_tx
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: '1'
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: ''
+    window_size: 1600, 2048
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 5]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: audio_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '44100'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1176, 36.0]
+    rotation: 0
+    state: enabled
+- name: fm_max_dev
+  id: variable
+  parameters:
+    comment: ''
+    value: 4.5*75e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1248, 872.0]
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 87.9e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 20.0]
+    rotation: 0
+    state: enabled
+- name: input_gain
+  id: variable
+  parameters:
+    comment: ''
+    value: 10e-6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 36.0]
+    rotation: 0
+    state: enabled
+- name: outbuffer
+  id: variable
+  parameters:
+    comment: ''
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1376, 92.0]
+    rotation: 0
+    state: enabled
+- name: pilot_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: main_tab@2
+    label: Stereo pilot gain
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 1e-3
+    stop: 500e-3
+    value: 10e-4
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1208, 168.0]
+    rotation: 0
+    state: enabled
+- name: stereo_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: main_tab@2
+    label: Stereo Gain
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 1e-3
+    stop: 300e-2
+    value: 300e-3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 32.0]
+    rotation: 0
+    state: enabled
+- name: usrp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 0.380e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1464, 72.0]
+    rotation: 0
+    state: enabled
+- name: usrp_sample_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1592, 88.0]
+    rotation: 0
+    state: enabled
+- name: analog_fm_preemph_0
+  id: analog_fm_preemph
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fh: '-1.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: '44100'
+    tau: 50e-6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 508.0]
+    rotation: 0
+    state: enabled
+- name: analog_fm_preemph_1
+  id: analog_fm_preemph
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    fh: '-1.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: '44100'
+    tau: 50e-6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 636.0]
+    rotation: 0
+    state: enabled
+- name: band_pass_filter_0
+  id: band_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    decim: '1'
+    gain: '1'
+    high_cutoff_freq: '58000'
+    interp: '1'
+    low_cutoff_freq: '56000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: usrp_rate
+    type: interp_fir_filter_fff
+    width: '500'
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1624, 304.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '4'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1848, 432.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0.9'
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1280, 460.0]
+    rotation: 180
+    state: enabled
+- name: blocks_multiply_const_vxx_0_0_1
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: pilot_gain*10
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [904, 448.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_xx_0
+  id: blocks_multiply_const_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: 10E-2
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 248.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_xx_1
+  id: blocks_multiply_const_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: 30E-2
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 328.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_xx_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1424, 216.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_xx_0_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1464, 296.0]
+    rotation: 0
+    state: enabled
+- name: blocks_wavfile_source_0
+  id: blocks_wavfile_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    file: C:\Users\szymo\Downloads\TRPZ_like_feeling.wav
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '2'
+    repeat: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 572.0]
+    rotation: 0
+    state: enabled
+- name: digital_chunks_to_symbols_xx_0
+  id: digital_chunks_to_symbols_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    dimension: '1'
+    in_type: byte
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    out_type: float
+    symbol_table: '[-1, 1]'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2032, 332.0]
+    rotation: 0
+    state: true
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nimport datetime\n\n\
+      try:\n    import pmt\nexcept ImportError:\n    try:\n        from gnuradio import\
+      \ pmt\n    except ImportError:\n        pass\n# -----------------------------\n\
+      \nclass rds_encoder_simplified(gr.sync_block):\n    \"\"\"\n    Simplified L2\
+      \ RDS (Radio Data System) Encoder.\n    Implements IEC 62106 standard framing\
+      \ and baseband bitstream generation.\n    Supports dynamic asynchronous updates\
+      \ for PS (Program Service) and RT (Radio Text) via PMT.\n    \"\"\"\n    def\
+      \ __init__(self, ps_name=\"MOJERADIO\", radio_text=\"Test RDS transmission from\
+      \ GNU Radio\"):\n        gr.sync_block.__init__(self,\n            name='RDS\
+      \ Encoder Simple',\n            in_sig=None,\n            out_sig=[np.uint8])\
+      \ # Output: Raw baseband bitstream (0s and 1s)\n\n        # Register message\
+      \ port for runtime configuration (dynamic text updates)\n        if 'pmt' in\
+      \ globals():\n            self.message_port_register_in(pmt.intern(\"rds in\"\
+      ))\n            self.set_msg_handler(pmt.intern(\"rds in\"), self.handle_msg)\n\
+      \n        # --- RDS PROTOCOL CONSTANTS & DEFAULTS ---\n        self.PI = 0x3012\
+      \         # Program Identification code (Hex)\n        self.PTY = 10       \
+      \     # Program Type (10 = Pop Music)\n        self.TP = True           # Traffic\
+      \ Program flag\n        self.TA = False          # Traffic Announcement flag\n\
+      \        self.MS = True           # Music/Speech switch\n        self.AF1 =\
+      \ 89.0          # Alternative Frequency\n        \n        # Checkword Offset\
+      \ Words for Block Synchronization (Standard IEC 62106)\n        # Order: A,\
+      \ B, C, C', D\n        self.OFFSET_WORDS = [0x0FC, 0x198, 0x168, 0x350, 0x1B4]\n\
+      \n        # Active groups scheduling configuration\n        self.active_groups\
+      \ = {\n            0: 1,  # Group 0A: Basic Tuning and Switching (PS)\n    \
+      \        1: 1,  # Group 1A: Program Item Number and PIN/ECC\n            2:\
+      \ 1,  # Group 2A: Radio Text (RT)\n            4: 1,  # Group 4A: Clock Time\
+      \ and Date (CT)\n            11: 1  # Group 11A: Open Data Application\n   \
+      \     }\n        \n        # Internal state initialization\n        self.ps_text\
+      \ = \"\"\n        self.rt_text = \"\"\n        self.set_ps_internal(ps_name)\n\
+      \        self.set_radiotext_internal(radio_text)\n\n        self.d_g0_counter\
+      \ = 0\n        self.d_g2_counter = 0\n        self.buffers = [] \n        self.d_current_buffer_idx\
+      \ = 0\n        self.d_buffer_bit_counter = 0\n        \n        # Pre-build\
+      \ the initial bitstream sequence\n        self.rebuild()\n\n    # --- STRING\
+      \ FORMATTING UTILS ---\n    def set_ps_internal(self, text):\n        \"\"\"\
+      Formats the PS name to exactly 8 characters as per standard.\"\"\"\n       \
+      \ clean = str(text).upper().replace('\\n', '')[:8]\n        self.ps_text = clean.ljust(8)\n\
+      \n    def set_radiotext_internal(self, text):\n        \"\"\"Formats the Radio\
+      \ Text to exactly 64 characters.\"\"\"\n        clean = str(text).replace('\\\
+      n', '')[:64]\n        self.rt_text = clean.ljust(64)\n\n    # --- ASYNCHRONOUS\
+      \ MESSAGE HANDLER ---\n    def handle_msg(self, msg):\n        \"\"\"\n    \
+      \    Handles incoming PMT messages to modify RDS data without stopping the flowgraph.\n\
+      \        Accepts formats: 'ps <text>' or 'text <text>'.\n        \"\"\"\n  \
+      \      if not pmt.is_pair(msg): return\n        try:\n            inp = str(pmt.blob_data(pmt.cdr(msg)).tobytes().decode('ascii')).strip()\n\
+      \            parts = inp.split(maxsplit=1)\n            cmd = parts[0].lower()\n\
+      \            arg = parts[1] if len(parts) > 1 else \"\"\n            \n    \
+      \        if cmd == \"ps\":\n                self.set_ps_internal(arg)\n    \
+      \            self.rebuild()\n            elif cmd in [\"text\", \"rt\"]:\n \
+      \               self.set_radiotext_internal(arg)\n                self.rebuild()\n\
+      \        except:\n            pass # Failsafe against malformed PMT payloads\n\
+      \n    # --- L2 FRAMING & ERROR CORRECTION ---\n    def calc_syndrome(self, message,\
+      \ mlen):\n        \"\"\"\n        Calculates the 10-bit checkword (CRC/Syndrome)\
+      \ using standard RDS generator polynomial.\n        Generator Polynomial: g(x)\
+      \ = x^10 + x^8 + x^7 + x^5 + x^4 + x^3 + 1 (0x5B9)\n        \"\"\"\n       \
+      \ reg = 0\n        poly = 0x5B9 \n        plen = 10\n        # Polynomial division\
+      \ algorithm\n        for i in range(mlen, 0, -1):\n            reg = (reg <<\
+      \ 1) | ((message >> (i - 1)) & 0x01)\n            if (reg & (1 << plen)):\n\
+      \                reg = reg ^ poly\n        for i in range(plen, 0, -1):\n  \
+      \          reg = reg << 1\n            if (reg & (1 << plen)):\n           \
+      \     reg = reg ^ poly\n        return reg & ((1 << plen) - 1)\n\n    def encode_af(self,\
+      \ af):\n        \"\"\"Encodes Alternative Frequency (Method A).\"\"\"\n    \
+      \    if 87.6 <= af <= 107.9: return int(round((af - 87.5) * 10))\n        return\
+      \ 0\n\n    # --- BITSTREAM RECONSTRUCTION ---\n    def rebuild(self):\n    \
+      \    \"\"\"\n        Constructs the complete sequence of physical bits ready\
+      \ for modulation.\n        Schedules groups according to priority (e.g., PS\
+      \ needs higher repetition rate than RT).\n        \"\"\"\n        self.buffers\
+      \ = []\n        \n        # 32 time-slot scheduler loop\n        for i in range(32):\n\
+      \            g_type = i % 16\n            is_B = (i >= 16) \n            \n\
+      \            if self.active_groups.get(g_type, 0) == 1:\n                repeats\
+      \ = 1\n                if g_type == 0: repeats = 4    # PS needs frequent broadcasting\n\
+      \                elif g_type == 2: repeats = 16 # RT requires 16 segments to\
+      \ transmit 64 chars\n                \n                for _ in range(repeats):\n\
+      \                    self.create_group(g_type, is_B)\n        \n        self.d_current_buffer_idx\
+      \ = 0\n\n    def create_group(self, group_type, AB_flag):\n        \"\"\"Assembles\
+      \ a 104-bit RDS group consisting of 4 blocks (26 bits each).\"\"\"\n       \
+      \ infoword = [0, 0, 0, 0] # 4 words, 16 bits each\n        \n        # Block\
+      \ 1: PI Code\n        infoword[0] = self.PI\n        \n        # Block 2: Header\
+      \ (Group Type, Traffic Codes, PTY)\n        # Structure: [GroupType(4)][AB(1)][TP(1)][PTY(5)][Remaining(5)]\n\
+      \        infoword[1] = ((group_type & 0xF) << 12) | \\\n                   \
+      \   ((1 if AB_flag else 0) << 11) | \\\n                      ((1 if self.TP\
+      \ else 0) << 10) | \\\n                      ((self.PTY & 0x1F) << 5)\n\n  \
+      \      # Group-specific data payload formatting\n        if group_type == 0:\
+      \ self.prepare_group0(infoword, AB_flag)\n        elif group_type == 1: self.prepare_group1(infoword)\n\
+      \        elif group_type == 2: self.prepare_group2(infoword, AB_flag)\n    \
+      \    elif group_type == 4: self.prepare_group4(infoword)\n        elif group_type\
+      \ == 11: self.prepare_group11(infoword)\n\n        # Calculate CRC and apply\
+      \ Offset Words (A, B, C/C', D)\n        final_block_bits = np.zeros(104, dtype=np.uint8)\n\
+      \        \n        for i in range(4):\n            # 1. CRC for 16 payload bits\n\
+      \            crc = self.calc_syndrome(infoword[i], 16)\n            # 2. Assemble\
+      \ 26-bit block (16 payload + 10 checkword)\n            raw = ((infoword[i]\
+      \ & 0xFFFF) << 10) | (crc & 0x3FF)\n            # 3. Select appropriate offset\
+      \ word for synchronization\n            off_idx = i\n            if i == 2 and\
+      \ AB_flag: off_idx = 3 # Offset C' for Version B\n            elif i == 3: off_idx\
+      \ = 4           # Offset D\n            \n            # 4. XOR masking\n   \
+      \         val_with_offset = raw ^ self.OFFSET_WORDS[off_idx]\n\n           \
+      \ # 5. Serialize to bits (Big Endian)\n            for b in range(26):\n   \
+      \             bit = (val_with_offset >> (25 - b)) & 0x1\n                final_block_bits[i*26\
+      \ + b] = bit\n        \n        self.buffers.append(final_block_bits)\n\n  \
+      \  # --- GROUP PAYLOAD HANDLERS ---\n    def prepare_group0(self, info, AB):\n\
+      \        \"\"\"Group 0A: Basic tuning, TA/MS flags, and PS Name segments.\"\"\
+      \"\n        info[1] |= ((1 if self.TA else 0) << 4) | ((1 if self.MS else 0)\
+      \ << 3)\n        info[1] |= (self.d_g0_counter & 0x3)\n        if self.d_g0_counter\
+      \ == 3: info[1] |= 0x4\n        \n        # Block 3: AF\n        info[2] = (225\
+      \ << 8) | (self.encode_af(self.AF1) & 0xFF)\n        \n        # Block 4: 2\
+      \ characters of PS Name\n        idx = self.d_g0_counter * 2\n        c1 = ord(self.ps_text[idx])\n\
+      \        c2 = ord(self.ps_text[idx+1])\n        info[3] = (c1 << 8) | c2\n \
+      \       \n        self.d_g0_counter = (self.d_g0_counter + 1) % 4\n\n    def\
+      \ prepare_group2(self, info, AB):\n        \"\"\"Group 2A: Radio Text (RT) segments.\"\
+      \"\"\n        info[1] |= (self.d_g2_counter & 0xF)\n        \n        # Blocks\
+      \ 3 & 4: 4 characters of Radio Text\n        idx = self.d_g2_counter * 4\n \
+      \       c1, c2 = ord(self.rt_text[idx]), ord(self.rt_text[idx+1])\n        c3,\
+      \ c4 = ord(self.rt_text[idx+2]), ord(self.rt_text[idx+3])\n        \n      \
+      \  info[2] = (c1 << 8) | c2\n        info[3] = (c3 << 8) | c4\n        \n  \
+      \      self.d_g2_counter = (self.d_g2_counter + 1) % 16\n\n    def prepare_group4(self,\
+      \ info):\n        \"\"\"Group 4A: Clock Time (CT) calculated via Modified Julian\
+      \ Date.\"\"\"\n        now = datetime.datetime.utcnow()\n        Y, M, D = now.year,\
+      \ now.month, now.day\n        h, m = now.hour, now.minute\n        \n      \
+      \  L = 1 if (M <= 2) else 0\n        mjd = 14956 + D + int((Y - L) * 365.25)\
+      \ + int((M + 1 + L * 12) * 30.6001)\n        \n        info[1] |= ((mjd >> 15)\
+      \ & 0x3)\n        info[2] = (((mjd >> 7) & 0xFF) << 8) | ((mjd & 0x7F) << 1)\
+      \ | ((h >> 4) & 0x1)\n        info[3] = ((h & 0xF) << 12) | (((m >> 2) & 0xF)\
+      \ << 8) | ((m & 0x3) << 6)\n\n    def prepare_group1(self, info):\n        info[2],\
+      \ info[3] = 0x80E0, 0x0000\n        \n    def prepare_group11(self, info):\n\
+      \        info[1] |= 0x1C8\n        info[2], info[3] = 0x2038, 0x4456\n\n   \
+      \ # --- DSP WORK STREAM ---\n    def work(self, input_items, output_items):\n\
+      \        \"\"\"\n        High-throughput GNU Radio work function.\n        Avoids\
+      \ slow Python 'for' loops in favor of vectorized NumPy array slicing.\n    \
+      \    \"\"\"\n        out = output_items[0]\n        n_out = len(out)\n     \
+      \   if not self.buffers: return 0\n\n        written = 0\n        while written\
+      \ < n_out:\n            current_buf = self.buffers[self.d_current_buffer_idx]\n\
+      \            available = len(current_buf) - self.d_buffer_bit_counter\n    \
+      \        to_write = min(available, n_out - written)\n            \n        \
+      \    # Vectorized memory block copy\n            out[written : written + to_write]\
+      \ = current_buf[self.d_buffer_bit_counter : self.d_buffer_bit_counter + to_write]\n\
+      \            \n            written += to_write\n            self.d_buffer_bit_counter\
+      \ += to_write\n            \n            if self.d_buffer_bit_counter >= len(current_buf):\n\
+      \                self.d_buffer_bit_counter = 0\n                self.d_current_buffer_idx\
+      \ = (self.d_current_buffer_idx + 1) % len(self.buffers)\n\n        return n_out"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ps_name: '"TRPZ"'
+    radio_text: '"TEST RDS"'
+  states:
+    _io_cache: ('RDS Encoder Simple', 'rds_encoder_simplified', [('ps_name', "'MOJERADIO'"),
+      ('radio_text', "'Test RDS transmission from GNU Radio'")], [('rds in', 'message',
+      1)], [('0', 'byte', 1)], '\n    Simplified L2 RDS (Radio Data System) Encoder.\n    Implements
+      IEC 62106 standard framing and baseband bitstream generation.\n    Supports
+      dynamic asynchronous updates for PS (Program Service) and RT (Radio Text) via
+      PMT.\n    ', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1784, 68.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_1
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\nimport\
+      \ math\nimport datetime\nimport time\n\nclass rds_encoder_impl(gr.sync_block):\n\
+      \    def __init__(self, pty_locale=0, pty=0, ms=True, ps=\"GR-RDS\", af1=89.0,\
+      \ \n                 tp=True, ta=False, pi_country_code=0, pi_coverage_area=0,\
+      \ \n                 pi_ref_num=0, radiotext=\"GNU Radio RDS Encoder\", max_latency=-1):\n\
+      \        \n        gr.sync_block.__init__(self,\n            name='RDS Encoder',\n\
+      \            in_sig=None,\n            out_sig=[np.uint8]) # Wyj\u015Bcie to\
+      \ surowe bity 0/1, nie floaty Manchester!\n\n        # Rejestracja port\xF3\
+      w wiadomo\u015Bci\n        self.message_port_register_in(pmt.intern(\"rds in\"\
+      ))\n        self.set_msg_handler(pmt.intern(\"rds in\"), self.handle_msg)\n\
+      \        \n        # Sta\u0142e RDS (Polynomial 0x5B9) i Offsety\n        self.OFFSET_WORDS\
+      \ = [0x0FC, 0x198, 0x168, 0x350, 0x1B4] # A, B, C, C', D\n        self.PTY_LOCALES\
+      \ = {0: \"RBDS (US)\", 1: \"RDS (EU)\"} # Uproszczone dla logiki\n\n       \
+      \ # Konfiguracja pocz\u0105tkowa (odpowiednik konstruktora C++)\n        self.pty_locale\
+      \ = pty_locale\n        \n        if pi_country_code == 0:\n            self.PI\
+      \ = pi_ref_num\n        else:\n            self.PI = ((pi_country_code & 0xF)\
+      \ << 12) | \\\n                      ((pi_coverage_area & 0xF) << 8) | \\\n\
+      \                      (pi_ref_num & 0xFF)\n        \n        self.PTY = pty\n\
+      \        self.TP = tp\n        self.TA = ta\n        self.MS = ms\n        self.AF1\
+      \ = af1\n        \n        # Inne flagi\n        self.DP = 3\n        self.extent\
+      \ = 2\n        self.event = 1340\n        self.location = 11023\n        \n\
+      \        # Bufory tekstowe\n        self.set_radiotext_internal(radiotext)\n\
+      \        self.set_ps_internal(ps)\n        \n        # Konfiguracja grup (jak\
+      \ w C++: groups[i] = 1 oznacza aktywno\u015B\u0107)\n        self.active_groups\
+      \ = {}\n        for g in [0, 1, 2, 3, 4, 8, 11]:\n            self.active_groups[g]\
+      \ = 1\n            \n        # Liczniki stanu\n        self.d_g0_counter = 0\n\
+      \        self.d_g2_counter = 0\n        self.d_g3_counter = 0\n        \n  \
+      \      # Pami\u0119\u0107 bufora wyj\u015Bciowego\n        self.buffers = []\
+      \ # Lista list bit\xF3w (nbuffers * 104)\n        self.d_current_buffer_idx\
+      \ = 0\n        self.d_buffer_bit_counter = 0\n        \n        # Budowa pocz\u0105\
+      tkowa\n        self.rebuild()\n\n    def calc_syndrome(self, message, mlen):\n\
+      \        \"\"\"Oblicza CRC (Syndrome) zgodnie z Annex B standardu RDS\"\"\"\n\
+      \        reg = 0\n        poly = 0x5B9\n        plen = 10\n        \n      \
+      \  for i in range(mlen, 0, -1):\n            reg = (reg << 1) | ((message >>\
+      \ (i - 1)) & 0x01)\n            if (reg & (1 << plen)):\n                reg\
+      \ = reg ^ poly\n                \n        for i in range(plen, 0, -1):\n   \
+      \         reg = reg << 1\n            if (reg & (1 << plen)):\n            \
+      \    reg = reg ^ poly\n                \n        return reg & ((1 << plen) -\
+      \ 1)\n\n    def encode_af(self, af):\n        \"\"\"Implementacja AF Method\
+      \ A (Standard str. 41)\"\"\"\n        if 87.6 <= af <= 107.9:\n            return\
+      \ int(round((af - 87.5) * 10))\n        elif 153 <= af <= 279:\n           \
+      \ return int(round((af - 144) / 9))\n        elif 531 <= af <= 1602:\n     \
+      \       return int(round((af - 531) / 9 + 16))\n        return 0 # Invalid\n\
+      \n    def set_radiotext_internal(self, text):\n        self.rt_text = text[:64].ljust(64)\
+      \ # Max 64 znaki\n\n    def set_ps_internal(self, ps):\n        self.ps_text\
+      \ = ps[:8].ljust(8)     # Max 8 znak\xF3w\n\n    def handle_msg(self, msg):\n\
+      \        \"\"\"Parser wiadomo\u015Bci tekstowych, klon logiki Boost Spirit z\
+      \ C++\"\"\"\n        if not pmt.is_pair(msg): return\n        \n        blob\
+      \ = pmt.cdr(msg)\n        # Konwersja blob na string\n        try:\n       \
+      \     inp_str = str(pmt.blob_data(blob).tobytes().decode('ascii')).strip()\n\
+      \        except:\n            return\n\n        print(f\"[RDS] Otrzymano komend\u0119\
+      : {inp_str}\")\n        parts = inp_str.split(maxsplit=1)\n        if not parts:\
+      \ return\n        \n        cmd = parts[0].lower()\n        arg = parts[1] if\
+      \ len(parts) > 1 else \"\"\n\n        rebuild_needed = True\n\n        if cmd\
+      \ == \"ps\":\n            self.set_ps_internal(arg)\n        elif cmd == \"\
+      text\":\n            self.set_radiotext_internal(arg)\n        elif cmd == \"\
+      pty\":\n            try:\n                val = int(arg, 0) # handles 0x hex\n\
+      \                self.PTY = val\n            except: pass\n        elif cmd\
+      \ == \"pi\":\n            try:\n                val = int(arg, 0)\n        \
+      \        self.PI = val\n            except: pass\n        elif cmd == \"ta\"\
+      :\n            self.TA = (arg.lower() in ['1', 'true', 'yes'])\n        elif\
+      \ cmd == \"tp\":\n            self.TP = (arg.lower() in ['1', 'true', 'yes'])\n\
+      \        elif cmd == \"ms\":\n            self.MS = (arg.lower() in ['1', 'true',\
+      \ 'yes'])\n        else:\n            print(f\"[RDS] Nieznana komenda: {cmd}\"\
+      )\n            rebuild_needed = False\n        \n        if rebuild_needed:\n\
+      \            self.rebuild()\n\n    def rebuild(self):\n        \"\"\"G\u0142\
+      \xF3wna logika planowania sekwencji grup\"\"\"\n        self.buffers = [] #\
+      \ Czy\u015Bcimy bufory\n        \n        # Logika sekwencjonowania z C++ (count_groups\
+      \ i p\u0119tle)\n        # Iterujemy przez 32 mo\u017Cliwe sloty\n        for\
+      \ i in range(32):\n            g_type = i % 16\n            is_B = (i >= 16)\n\
+      \            \n            if self.active_groups.get(i, 0) == 1:\n         \
+      \       # Je\u015Bli grupa jest aktywna, decydujemy ile razy j\u0105 powt\xF3\
+      rzy\u0107\n                repeats = 1\n                if g_type == 0: repeats\
+      \ = 4\n                elif g_type == 2: repeats = 16 # Radiotext potrzebuje\
+      \ czasu na scroll\n                elif g_type == 3: repeats = 2\n         \
+      \       \n                for _ in range(repeats):\n                    self.create_group(g_type,\
+      \ is_B)\n        \n        self.d_current_buffer_idx = 0\n        # print(f\"\
+      [RDS] Rebuild complete. Buffers: {len(self.buffers)}\")\n\n    def create_group(self,\
+      \ group_type, AB_flag):\n        \"\"\"Tworzy 4 bloki (104 bity) dla danej grupy\"\
+      \"\"\n        # Block 1: PI Code (zawsze)\n        infoword = [0, 0, 0, 0]\n\
+      \        checkword = [0, 0, 0, 0]\n        block = [0, 0, 0, 0]\n        \n\
+      \        infoword[0] = self.PI\n        # Block 2 Header: Group Type | AB |\
+      \ TP | PTY\n        infoword[1] = ((group_type & 0xF) << 12) | \\\n        \
+      \              ((1 if AB_flag else 0) << 11) | \\\n                      ((1\
+      \ if self.TP else 0) << 10) | \\\n                      ((self.PTY & 0x1F) <<\
+      \ 5)\n\n        # Dispatch do konkretnych handler\xF3w grup\n        if group_type\
+      \ == 0:\n            self.prepare_group0(infoword, AB_flag)\n        elif group_type\
+      \ == 1:\n            self.prepare_group1a(infoword)\n        elif group_type\
+      \ == 2:\n            self.prepare_group2(infoword, AB_flag)\n        elif group_type\
+      \ == 3:\n            self.prepare_group3a(infoword)\n        elif group_type\
+      \ == 4:\n            self.prepare_group4a(infoword)\n        elif group_type\
+      \ == 8:\n            self.prepare_group8a(infoword)\n        elif group_type\
+      \ == 11:\n            self.prepare_group11a(infoword)\n        else:\n     \
+      \       # Pusta/nieobs\u0142ugiwana\n            pass\n\n        # Obliczanie\
+      \ CRC i dodawanie Offset\xF3w\n        for i in range(4):\n            checkword[i]\
+      \ = self.calc_syndrome(infoword[i], 16)\n            raw_block = ((infoword[i]\
+      \ & 0xFFFF) << 10) | (checkword[i] & 0x3FF)\n            \n            offset_idx\
+      \ = i\n            if i == 2 and AB_flag: # Offset C' (index 3 w tablicy offsetow\
+      \ C++)\n                offset_idx = 3 # C'\n            elif i == 3:\n    \
+      \            offset_idx = 4 # D\n            \n            # Tablica OFFSET_WORDS\
+      \ ma 5 elementow: A, B, C, C', D\n            # mapowanie i:0->A, 1->B, 2->C(lub\
+      \ C'), 3->D\n            xor_val = 0\n            if i == 0: xor_val = self.OFFSET_WORDS[0]\n\
+      \            elif i == 1: xor_val = self.OFFSET_WORDS[1]\n            elif i\
+      \ == 2: xor_val = self.OFFSET_WORDS[3] if AB_flag else self.OFFSET_WORDS[2]\n\
+      \            elif i == 3: xor_val = self.OFFSET_WORDS[4]\n            \n   \
+      \         block[i] = raw_block ^ xor_val\n\n        # Pakowanie bit\xF3w do\
+      \ bufora (104 bity)\n        bit_buffer = np.zeros(104, dtype=np.uint8)\n  \
+      \      for i in range(4): # 4 bloki\n            val = block[i]\n          \
+      \  for bit in range(26): # 26 bit\xF3w na blok\n                # Big endian\
+      \ bits logic z prepare_buffer w C++\n                is_set = (val >> (25 -\
+      \ bit)) & 0x01\n                bit_buffer[i * 26 + bit] = is_set\n        \
+      \        \n        self.buffers.append(bit_buffer)\n\n    # --- Specyficzne\
+      \ Implementacje Grup ---\n\n    def prepare_group0(self, infoword, AB):\n  \
+      \      # TA, MS\n        infoword[1] |= ((1 if self.TA else 0) << 4)\n     \
+      \   infoword[1] |= ((1 if self.MS else 0) << 3)\n        # DI (Stereo decoder\
+      \ info) - hardcoded sequence for simple stereo\n        infoword[1] |= (self.d_g0_counter\
+      \ & 0x3)\n        if self.d_g0_counter == 3: # Stereo flag\n             infoword[1]\
+      \ |= 0x4 # bit 2 (d0)\n             \n        # Block 3: AF or PI\n        if\
+      \ not AB:\n            # AF\n            af_code = self.encode_af(self.AF1)\n\
+      \            infoword[2] = (225 << 8) | (af_code & 0xFF)\n        else:\n  \
+      \          infoword[2] = self.PI\n            \n        # Block 4: PS Segment\n\
+      \        c1 = ord(self.ps_text[2 * self.d_g0_counter])\n        c2 = ord(self.ps_text[2\
+      \ * self.d_g0_counter + 1])\n        infoword[3] = (c1 << 8) | c2\n        \n\
+      \        self.d_g0_counter = (self.d_g0_counter + 1) % 4\n\n    def prepare_group2(self,\
+      \ infoword, AB):\n        # RT Segment index (4 bity)\n        infoword[1] |=\
+      \ (self.d_g2_counter & 0xF)\n        # Flag A/B change - w tym kodzie statyczne,\
+      \ w C++ zmienia si\u0119 przy nowym tek\u015Bcie\n        # Tutaj upraszczamy,\
+      \ zak\u0142adaj\u0105c flag\u0119 0 w bicie 4 (AB flag text)\n        \n   \
+      \     idx = self.d_g2_counter\n        if not AB: # Group 2A\n            c1\
+      \ = ord(self.rt_text[idx*4])\n            c2 = ord(self.rt_text[idx*4+1])\n\
+      \            infoword[2] = (c1 << 8) | c2\n            \n            c3 = ord(self.rt_text[idx*4+2])\n\
+      \            c4 = ord(self.rt_text[idx*4+3])\n            infoword[3] = (c3\
+      \ << 8) | c4\n        else: # Group 2B\n            infoword[2] = self.PI\n\
+      \            c1 = ord(self.rt_text[idx*2])\n            c2 = ord(self.rt_text[idx*2+1])\n\
+      \            infoword[3] = (c1 << 8) | c2\n            \n        self.d_g2_counter\
+      \ = (self.d_g2_counter + 1) % 16\n\n    def prepare_group1a(self, infoword):\n\
+      \        infoword[2] = (0x80 << 8) | 0xE0 # ECC, Variant 0\n        infoword[3]\
+      \ = 0\n\n    def prepare_group3a(self, infoword):\n        # Open Data Application\
+      \ (AID)\n        if self.d_g3_counter == 1:\n            infoword[1] |= (0x31D0\
+      \ & 0x1F)\n            infoword[2] = 0x6280\n            infoword[3] = 0xCD46\n\
+      \        else:\n            infoword[1] |= (0x31D0 & 0x1F)\n            infoword[2]\
+      \ = 0x0066\n            infoword[3] = 0xCD46\n        self.d_g3_counter = (self.d_g3_counter\
+      \ + 1) % 2\n\n    def prepare_group4a(self, infoword):\n        # Clock Time\
+      \ (CT) and Date\n        now = datetime.datetime.utcnow()\n        Y = now.year\n\
+      \        M = now.month\n        D = now.day\n        h = now.hour\n        m\
+      \ = now.minute\n        \n        # Obliczenia MJD (Modified Julian Date) wg\
+      \ standardu RDS\n        L = 1 if (M == 1 or M == 2) else 0\n        mjd = 14956\
+      \ + D + int((Y - L) * 365.25) + int((M + 1 + L * 12) * 30.6001)\n        \n\
+      \        # Local time offset (uproszczone: 0)\n        toffset = 0 \n      \
+      \  \n        infoword[1] |= ((mjd >> 15) & 0x3)\n        infoword[2] = (((mjd\
+      \ >> 7) & 0xFF) << 8) | \\\n                      ((mjd & 0x7F) << 1) | \\\n\
+      \                      ((h >> 4) & 0x1)\n        infoword[3] = ((h & 0xF) <<\
+      \ 12) | \\\n                      (((m >> 2) & 0xF) << 8) | \\\n           \
+      \           ((m & 0x3) << 6) | \\\n                      ((0 if toffset > 0\
+      \ else 1) << 5) | \\\n                      (abs(toffset * 2) & 0x1F)\n\n  \
+      \  def prepare_group8a(self, infoword):\n        # TMC (Traffic Message Channel)\
+      \ placeholder\n        infoword[1] |= (1 << 3) | (self.DP & 0x7)\n        infoword[2]\
+      \ = (1 << 15) | ((self.extent & 0x7) << 11) | (self.event & 0x7FF)\n       \
+      \ infoword[3] = self.location\n\n    def prepare_group11a(self, infoword):\n\
+      \        infoword[1] |= (0xB1C8 & 0x1F)\n        infoword[2] = 0x2038\n    \
+      \    infoword[3] = 0x4456\n\n    def work(self, input_items, output_items):\n\
+      \        out = output_items[0]\n        n_out = len(out)\n        \n       \
+      \ # Je\u015Bli bufor RDS nie jest jeszcze gotowy, nic nie wysy\u0142aj\n   \
+      \     if not self.buffers:\n            return 0\n            \n        # Pobierz\
+      \ aktualny bufor bit\xF3w (104 bity)\n        current_buf = self.buffers[self.d_current_buffer_idx]\n\
+      \        buf_len = len(current_buf)\n        \n        written = 0\n       \
+      \ \n        # Zamiast wolnej p\u0119tli 'for', u\u017Cywamy kopiowania blokowego\
+      \ (Slicing)\n        while written < n_out:\n            # Ile bit\xF3w zosta\u0142\
+      o w obecnym 'current_buf' do wys\u0142ania?\n            available = buf_len\
+      \ - self.d_buffer_bit_counter\n            \n            # Ile mo\u017Cemy zapisa\u0107\
+      \ w tym cyklu (nie wi\u0119cej ni\u017C miejsce w wyj\u015Bciu i nie wi\u0119\
+      cej ni\u017C dost\u0119pne)\n            to_write = min(available, n_out - written)\n\
+      \            \n            # SZYBKIE KOPIOWANIE BLOKU DANYCH (Vector copy)\n\
+      \            out[written : written + to_write] = current_buf[self.d_buffer_bit_counter\
+      \ : self.d_buffer_bit_counter + to_write]\n            \n            written\
+      \ += to_write\n            self.d_buffer_bit_counter += to_write\n         \
+      \   \n            # Je\u015Bli wys\u0142ali\u015Bmy ca\u0142y bie\u017C\u0105\
+      cy bufor RDS (104 bity), prze\u0142\u0105czamy na nast\u0119pny\n          \
+      \  if self.d_buffer_bit_counter >= buf_len:\n                self.d_buffer_bit_counter\
+      \ = 0\n                self.d_current_buffer_idx = (self.d_current_buffer_idx\
+      \ + 1) % len(self.buffers)\n                current_buf = self.buffers[self.d_current_buffer_idx]\n\
+      \                buf_len = len(current_buf)\n                \n            \
+      \    # (Opcjonalnie) Tu mo\u017Cna wstawi\u0107 logik\u0119 od\u015Bwie\u017C\
+      ania czasu co minut\u0119\n                # if self.d_current_buffer_idx ==\
+      \ 0: self.rebuild() \n\n        return n_out\n"
+    af1: '88900000'
+    affinity: ''
+    alias: ''
+    comment: ''
+    max_latency: '12'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ms: 'True'
+    pi_country_code: '3'
+    pi_coverage_area: '2'
+    pi_ref_num: '1'
+    ps: '"Radio Sraka"'
+    pty: '10'
+    pty_locale: '1'
+    radiotext: '"Gramy starego"'
+    ta: 'False'
+    tp: 'True'
+  states:
+    _io_cache: ('RDS Encoder', 'rds_encoder_impl', [('pty_locale', '0'), ('pty', '0'),
+      ('ms', 'True'), ('ps', "'GR-RDS'"), ('af1', '89.0'), ('tp', 'True'), ('ta',
+      'False'), ('pi_country_code', '0'), ('pi_coverage_area', '0'), ('pi_ref_num',
+      '0'), ('radiotext', "'GNU Radio RDS Encoder'"), ('max_latency', '-1')], [('rds
+      in', 'message', 1)], [('0', 'byte', 1)], '', ['pty_locale'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1736, 176.0]
+    rotation: 0
+    state: disabled
+- name: gr_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 268.0]
+    rotation: 0
+    state: enabled
+- name: gr_add_xx_1
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+    num_inputs: '4'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [996.0, 512]
+    rotation: 270
+    state: enabled
+- name: gr_diff_encoder_bb_0
+  id: digital_diff_encoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+    modulus: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2088, 124.0]
+    rotation: 0
+    state: enabled
+- name: gr_frequency_modulator_fc_0
+  id: analog_frequency_modulator_fc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+    sensitivity: 2*math.pi*fm_max_dev/usrp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 748.0]
+    rotation: 0
+    state: enabled
+- name: gr_map_bb_1
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: '[1,2]'
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2248, 248.0]
+    rotation: 180
+    state: enabled
+- name: gr_multiply_xx_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1568, 452.0]
+    rotation: 180
+    state: enabled
+- name: gr_multiply_xx_1
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [816, 576.0]
+    rotation: 0
+    state: enabled
+- name: gr_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: 38e3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: usrp_rate
+    showports: 'False'
+    type: float
+    waveform: analog.GR_SIN_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [416, 552.0]
+    rotation: 0
+    state: enabled
+- name: gr_sig_source_x_0_1
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: 19e3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: usrp_rate
+    showports: 'False'
+    type: float
+    waveform: analog.GR_SIN_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [488, 88.0]
+    rotation: 0
+    state: enabled
+- name: gr_sub_xx_0
+  id: blocks_sub_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 364.0]
+    rotation: 0
+    state: enabled
+- name: gr_unpack_k_bits_bb_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '2'
+    maxoutbuf: outbuffer
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1864, 280.0]
+    rotation: 180
+    state: enabled
+- name: iio_pluto_sink_0
+  id: iio_pluto_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    attenuation1: '5'
+    bandwidth: '200000'
+    buffer_size: '32768'
+    comment: ''
+    cyclic: 'False'
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: '90500000'
+    fstop: '0'
+    len_tag_key: ''
+    samplerate: int(usrp_sample_rate)
+    type: fc32
+    uri: ip:192.168.2.1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1840, 840.0]
+    rotation: 0
+    state: enabled
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import math
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 4]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: min(80e3,usrp_rate/2)
+    decim: '1'
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: usrp_rate
+    type: interp_fir_filter_fff
+    width: 2e3
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 596.0]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: 15e3
+    decim: '1'
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: usrp_rate
+    type: interp_fir_filter_fff
+    width: 2e3
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [960, 280.0]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0_0_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: 15e3
+    decim: '1'
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: usrp_rate
+    type: interp_fir_filter_fff
+    width: 2e3
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 416.0]
+    rotation: 0
+    state: enabled
+- name: main_tab
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: ''
+    label0: Spectrum
+    label1: Waterfall
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: Levels
+    label3: Tab 3
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 112.0]
+    rotation: 0
+    state: enabled
+- name: note_5
+  id: note
+  parameters:
+    alias: ''
+    comment: ''
+    note: Needs to be above 150k
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1432, 20.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: usrp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'False'
+    grid: 'True'
+    gui_hint: main_tab@0
+    label: Relative Gain
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'True'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: float
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1392, 636.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0_1
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: usrp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'False'
+    grid: 'True'
+    gui_hint: main_tab@0
+    label: Relative Gain
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'True'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: float
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1408, 440.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_freq_sink_x_0_1_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    axislabels: 'True'
+    bw: usrp_rate
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'False'
+    grid: 'True'
+    gui_hint: main_tab@0
+    label: Relative Gain
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'True'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: float
+    units: dB
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1968, 672.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_waterfall_sink_x_0
+  id: qtgui_waterfall_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    axislabels: 'True'
+    bw: usrp_rate
+    color1: '0'
+    color10: '0'
+    color2: '0'
+    color3: '0'
+    color4: '0'
+    color5: '0'
+    color6: '0'
+    color7: '0'
+    color8: '0'
+    color9: '0'
+    comment: ''
+    fc: '0'
+    fftsize: '1024'
+    freqhalf: 'False'
+    grid: 'True'
+    gui_hint: main_tab@1
+    int_max: '10'
+    int_min: '-140'
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    showports: 'False'
+    type: float
+    update_time: '0.10'
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1544, 548.0]
+    rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_0
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: int(audio_rate/1e2)
+    fbw: '0'
+    interp: int(usrp_rate/1e2)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [72, 300.0]
+    rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_0_0
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: int(audio_rate/1e2)
+    fbw: '0'
+    interp: int(usrp_rate/1e2)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [136, 480.0]
+    rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_1
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: int(usrp_rate/10000)
+    fbw: '0'
+    interp: int(usrp_sample_rate/1e4)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1408, 864.0]
+    rotation: 0
+    state: enabled
+- name: root_raised_cosine_filter_0
+  id: root_raised_cosine_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: '1'
+    comment: ''
+    decim: '1'
+    gain: '1'
+    interp: '160'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ntaps: 11*160
+    samp_rate: usrp_rate
+    sym_rate: '2375'
+    type: interp_fir_filter_fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [2160, 480.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [analog_fm_preemph_0, '0', rational_resampler_xxx_0, '0']
+- [analog_fm_preemph_1, '0', rational_resampler_xxx_0_0, '0']
+- [band_pass_filter_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_multiply_const_vxx_0, '0', gr_multiply_xx_0, '0']
+- [blocks_multiply_const_vxx_0, '0', qtgui_freq_sink_x_0_1_0, '0']
+- [blocks_multiply_const_vxx_0_0, '0', gr_add_xx_1, '0']
+- [blocks_multiply_const_vxx_0_0_1, '0', gr_add_xx_1, '1']
+- [blocks_multiply_const_xx_0, '0', low_pass_filter_0_0, '0']
+- [blocks_multiply_const_xx_1, '0', low_pass_filter_0_0_0, '0']
+- [blocks_multiply_xx_0, '0', blocks_multiply_xx_0_0, '0']
+- [blocks_multiply_xx_0_0, '0', band_pass_filter_0, '0']
+- [blocks_wavfile_source_0, '0', analog_fm_preemph_0, '0']
+- [blocks_wavfile_source_0, '1', analog_fm_preemph_1, '0']
+- [digital_chunks_to_symbols_xx_0, '0', root_raised_cosine_filter_0, '0']
+- [epy_block_0, '0', gr_diff_encoder_bb_0, '0']
+- [epy_block_1, '0', gr_diff_encoder_bb_0, '0']
+- [gr_add_xx_0, '0', blocks_multiply_const_xx_0, '0']
+- [gr_add_xx_1, '0', low_pass_filter_0, '0']
+- [gr_add_xx_1, '0', qtgui_freq_sink_x_0, '0']
+- [gr_diff_encoder_bb_0, '0', gr_map_bb_1, '0']
+- [gr_frequency_modulator_fc_0, '0', rational_resampler_xxx_1, '0']
+- [gr_map_bb_1, '0', gr_unpack_k_bits_bb_0, '0']
+- [gr_multiply_xx_0, '0', blocks_multiply_const_vxx_0_0, '0']
+- [gr_multiply_xx_0, '0', qtgui_freq_sink_x_0_1, '0']
+- [gr_multiply_xx_1, '0', gr_add_xx_1, '3']
+- [gr_sig_source_x_0, '0', gr_multiply_xx_1, '1']
+- [gr_sig_source_x_0_1, '0', blocks_multiply_const_vxx_0_0_1, '0']
+- [gr_sig_source_x_0_1, '0', blocks_multiply_xx_0, '0']
+- [gr_sig_source_x_0_1, '0', blocks_multiply_xx_0, '1']
+- [gr_sig_source_x_0_1, '0', blocks_multiply_xx_0_0, '1']
+- [gr_sub_xx_0, '0', blocks_multiply_const_xx_1, '0']
+- [gr_unpack_k_bits_bb_0, '0', digital_chunks_to_symbols_xx_0, '0']
+- [low_pass_filter_0, '0', gr_frequency_modulator_fc_0, '0']
+- [low_pass_filter_0, '0', qtgui_waterfall_sink_x_0, '0']
+- [low_pass_filter_0_0, '0', gr_add_xx_1, '2']
+- [low_pass_filter_0_0_0, '0', gr_multiply_xx_1, '0']
+- [rational_resampler_xxx_0, '0', gr_add_xx_0, '0']
+- [rational_resampler_xxx_0, '0', gr_sub_xx_0, '0']
+- [rational_resampler_xxx_0_0, '0', gr_add_xx_0, '1']
+- [rational_resampler_xxx_0_0, '0', gr_sub_xx_0, '1']
+- [rational_resampler_xxx_1, '0', iio_pluto_sink_0, '0']
+- [root_raised_cosine_filter_0, '0', gr_multiply_xx_0, '1']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0
