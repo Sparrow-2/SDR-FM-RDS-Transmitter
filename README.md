@@ -23,9 +23,9 @@ Standard GNU Radio comes with basic RDS blocks, but this project implements a cu
 * **Software:** GNU Radio Companion 3.10+, Python 3, NumPy
 * **Hardware Compatibility:** PlutoSDR (via Sink)
 
-## Real-World Hardware Verification 🧪
+## Real-World Hardware Verification 
 
-Theoretical DSP logic is one thing, but physical execution is where true verification happens. To prove the bit-exactness of the custom Python L2 encoder, the flowgraph was executed using physical SDR hardware. 
+Theoretical DSP logic is one thing, but physical execution is where true verification happens. To prove the bit-exactness of the custom Python encoder, the flowgraph was executed using physical SDR hardware. 
 
 The generated RF signal was transmitted over the air and successfully decoded by a separate SDR receiver setup.
 
